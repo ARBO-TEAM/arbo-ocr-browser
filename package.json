@@ -7,12 +7,11 @@
     "packages/common",
     "packages/models",
     "packages/node",
-    "packages/node/example",
-    "packages/react-native",
-    "packages/react-native/example"
+    "packages/node/example"
   ],
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
+    "@gutenye/script.js": "^7.2.1",
     "@types/bun": "latest",
     "tsc-alias": "^1.8.8",
     "typescript": "^5.0.0"

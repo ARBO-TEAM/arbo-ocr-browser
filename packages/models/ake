@@ -1,7 +1,7 @@
-#!/usr/bin/env nu
+#!/usr/bin/env bun
 
-def main [] {}
+import { app, $ } from "@gutenye/script.js";
 
-def 'main publish' [] {
-	npm publish
-}
+app.cmd("publish", "Publish package").add(async () => {
+  await $`npm publish`;
+});

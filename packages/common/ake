@@ -1,15 +1,20 @@
-#!/usr/bin/env nu
+#!/usr/bin/env bun
 
-def main [] {}
+import { app, $ } from "@gutenye/script.js";
 
-def 'main build' [] {
-  rm -rf build
-  do -i { bun run tsc --project tsconfig.build.json }
-  bun run tsc-alias --project tsconfig.build.json
-}
+// `ake` is symlinked into sibling package dirs; capture the caller's cwd so
+// commands run in the invoking package dir, not in common/.
+$.cwd(process.cwd());
 
-def 'main publish' [] {
-  # build by scripts.prepublishOnly
-  npm publish
-}
+app.cmd("build", "Build package").add(async () => {
+  await $`
+    rm -rf build
+    bun run tsc --project tsconfig.build.json
+    bun run tsc-alias --project tsconfig.build.json
+  `;
+});
 
+app.cmd("publish", "Publish package").add(async () => {
+  // build by scripts.prepublishOnly
+  await $`npm publish`;
+});

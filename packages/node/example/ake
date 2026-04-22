@@ -1,10 +1,13 @@
-#!/usr/bin/env nu
+#!/usr/bin/env bun
 
-def 'main' [] {}
+import { app, $ } from "@gutenye/script.js";
 
-def 'main start' [
-  path: string = 'assets/cn-01.jpg'
-] {
-  rm -rf output
-  bun run node-example.ts $path
-}
+app
+  .cmd("start", "Run node example")
+  .add("[path]", "Image path", ["assets/cn-01.jpg"])
+  .add(async (path = "assets/cn-01.jpg") => {
+    await $`
+      rm -rf output
+      bun run node-example.ts ${path}
+    `;
+  });
