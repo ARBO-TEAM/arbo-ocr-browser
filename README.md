@@ -1,10 +1,10 @@
-# @areb0s/ocr
+# arbo-ocr-browser
 
 > Fork of [@gutenye/ocr](https://github.com/gutenye/ocr) with **ImageBitmap support**
 
 **OCR Javascript library for Browser with extended image input support**
 
-Based on [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) and [ONNX Runtime](https://github.com/microsoft/onnxruntime), supports PP-OCRv4 model
+Based on [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) and [ONNX Runtime](https://github.com/microsoft/onnxruntime), supports PP-OCRv6 models
 
 ## What's New in This Fork
 
@@ -18,17 +18,17 @@ Based on [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) and [ONNX Runtim
 ### Browser
 
 ```ts
-bun add @areb0s/ocr-browser
+bun add arbo-ocr-browser
 ```
 
 ```ts
-import Ocr from '@areb0s/ocr-browser'
+import Ocr from 'arbo-ocr-browser'
 
 const ocr = await Ocr.create({
   models: {
-    detectionPath: '/assets/ch_PP-OCRv4_det_infer.onnx',
-    recognitionPath: '/assets/ch_PP-OCRv4_rec_infer.onnx',
-    dictionaryPath: '/assets/ppocr_keys_v1.txt'
+    detectionPath: '/assets/PP-OCRv6_det_tiny.onnx',
+    recognitionPath: '/assets/PP-OCRv6_rec_tiny.onnx',
+    dictionaryPath: '/assets/PP-OCRv6_rec_tiny_dict.txt'
   }
 })
 
@@ -101,7 +101,7 @@ TextLine {
 For advanced use cases, you can use `ImageRaw` directly:
 
 ```ts
-import { ImageRaw } from '@areb0s/ocr-browser'
+import { ImageRaw } from 'arbo-ocr-browser'
 
 // Universal factory method
 const imageRaw = await ImageRaw.from(input)
