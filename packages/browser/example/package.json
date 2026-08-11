@@ -1,7 +1,7 @@
 {
   "name": "browser-example",
   "dependencies": {
-    "@areb0s/ocr-browser": "workspace:*",
-    "@areb0s/ocr-common": "workspace:*"
+    "arbo-ocr-browser": "workspace:*",
+    "arbo-ocr-common": "workspace:*"
   }
 }

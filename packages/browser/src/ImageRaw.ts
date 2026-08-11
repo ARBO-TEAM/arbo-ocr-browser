@@ -1,5 +1,5 @@
-import { ImageRawBase } from '@areb0s/ocr-common'
-import type { ImageRawData, LineImage, SizeOption, BrowserImageInput } from '@areb0s/ocr-common'
+import { ImageRawBase } from 'arbo-ocr-common'
+import type { ImageRawData, LineImage, SizeOption, BrowserImageInput } from 'arbo-ocr-common'
 import invariant from 'tiny-invariant'
 
 // ===========================================
