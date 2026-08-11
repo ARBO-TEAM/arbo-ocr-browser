@@ -6,6 +6,12 @@ import { ModelBase } from './ModelBase'
 
 const BASE_SIZE = 32
 
+/**
+ * Default longest-side cap for the detector input. 960 is PaddleOCR's own
+ * `det_limit_side_len` default and what the arboOCR C++ engine uses.
+ */
+const DEFAULT_DETECTION_MAX_SIZE = 960
+
 export class Detection extends ModelBase {
   static async create({ models, onnxOptions = {}, ...restOptions }: ModelCreateOptions) {
     const detectionPath = models?.detectionPath || defaultModels?.detectionPath
@@ -33,11 +39,14 @@ export class Detection extends ModelBase {
           ? await ImageRaw.open(input)
           : new ImageRaw(input as ImageRawData)
 
-    // Resize image to multiple of 32
+    // Resize image to multiple of 32, capped on the longest side.
     //   - image width and height must be a multiple of 32
-    //   - bigger image -> more accurate result, but takes longer time
-    // inputImage = await Image.resize(image, multipleOfBaseSize(image, { maxSize: 960 }))
-    const inputImage = await image.resize(multipleOfBaseSize(image))
+    //   - without the cap, detection runs at source resolution: cost grows with
+    //     megapixels (a 34.8 MP scan took ~10 s vs ~0.6 s capped), and the
+    //     larger models can exhaust memory outright.
+    //   - detectionMaxSize: 0 opts back out.
+    const maxSize = this.options.detectionMaxSize ?? DEFAULT_DETECTION_MAX_SIZE
+    const inputImage = await image.resize(multipleOfBaseSize(image, { maxSize }))
     this.debugImage(inputImage, 'out1-multiple-of-base-size.jpg')
 
     // Covert image data to model data

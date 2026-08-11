@@ -1,4 +1,4 @@
-import { FileUtilsBase } from '@areb0s/ocr-common'
+import { FileUtilsBase } from 'arbo-ocr-common'
 
 export class FileUtils extends FileUtilsBase {
   static async read(url: string) {

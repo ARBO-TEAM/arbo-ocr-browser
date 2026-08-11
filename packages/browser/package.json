@@ -1,5 +1,5 @@
 {
-  "name": "@areb0s/ocr-browser",
+  "name": "arbo-ocr-browser",
   "version": "1.0.7",
   "description": "Fork of @gutenye/ocr-browser with ImageBitmap support. High accurate OCR library for Browser based on PaddleOCR and ONNX runtime. Accepts ImageBitmap, HTMLImageElement, HTMLCanvasElement, HTMLVideoElement as input.",
   "keywords": [
@@ -38,7 +38,7 @@
     "prepublishOnly": "npm run build && npm run build:iife"
   },
   "dependencies": {
-    "@areb0s/ocr-common": "1.0.4",
+    "arbo-ocr-common": "workspace:*",
     "@gutenye/ocr-models": "^1.2.2",
     "onnxruntime-web": "^1.23.2"
   }

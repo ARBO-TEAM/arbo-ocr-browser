@@ -1,13 +1,13 @@
-import Ocr, { ImageRaw } from '@areb0s/ocr-browser'
-import type { BrowserImageInput } from '@areb0s/ocr-browser'
+import Ocr, { ImageRaw } from 'arbo-ocr-browser'
+import type { BrowserImageInput } from 'arbo-ocr-browser'
 
 async function main() {
   const ocr = await Ocr.create({
     isDebug: true,
     models: {
-      detectionPath: '/assets/ch_PP-OCRv4_det_infer.onnx',
-      recognitionPath: '/assets/ch_PP-OCRv4_rec_infer.onnx',
-      dictionaryPath: '/assets/ppocr_keys_v1.txt',
+      detectionPath: '/assets/PP-OCRv6_det_tiny.onnx',
+      recognitionPath: '/assets/PP-OCRv6_rec_tiny.onnx',
+      dictionaryPath: '/assets/PP-OCRv6_rec_tiny_dict.txt',
     },
   })
   ;(document.querySelector('.hide') as HTMLElement).style.visibility = 'visible'

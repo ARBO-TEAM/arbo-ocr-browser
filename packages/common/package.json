@@ -1,5 +1,5 @@
 {
-  "name": "@areb0s/ocr-common",
+  "name": "arbo-ocr-common",
   "description": "Fork of @gutenye/ocr-common with ImageBitmap support. Shared OCR library for Browser/Node based on PaddleOCR and ONNX runtime.",
   "version": "1.0.5",
   "type": "module",

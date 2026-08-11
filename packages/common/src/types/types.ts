@@ -78,6 +78,16 @@ export interface ModelBaseConstructorArg {
 export interface ModelBaseOptions {
   isDebug?: boolean
   debugOutputDir?: string
+  /**
+   * Longest side, in pixels, that the detector input is downscaled to before
+   * inference. Aspect ratio is preserved and images already smaller are left
+   * alone. Defaults to 960, matching PaddleOCR's `det_limit_side_len`.
+   *
+   * Without a cap, detection runs at the source resolution: a 34.8 MP scan
+   * takes ~10 s instead of ~0.6 s, and the largest models can exhaust memory.
+   * Set to `0` to disable the cap and restore the old unbounded behaviour.
+   */
+  detectionMaxSize?: number
 }
 
 export interface ModelCreateOptions extends ModelBaseOptions {

@@ -1,5 +1,5 @@
 {
-  "name": "@areb0s/ocr",
+  "name": "arbo-ocr-browser-monorepo",
   "version": "1.0.1",
   "workspaces": [
     "packages/browser",

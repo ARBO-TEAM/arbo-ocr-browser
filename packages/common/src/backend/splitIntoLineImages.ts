@@ -300,8 +300,14 @@ function cvImread(image: ImageRawType) {
 }
 
 function cvImshow(mat: cv.Mat): ImageRawType {
-  // Create ImageRaw first (copies data internally), then delete mat
-  const result = new ImageRaw({ data: mat.data, width: mat.cols, height: mat.rows })
-  mat.delete() // Memory optimization: delete after data is copied
-  return result
+  // `mat.data` is a view onto the opencv-js WASM heap, and ImageRawBase stores
+  // whatever it is handed without copying — so deleting the Mat while the view
+  // is still referenced hands back freed memory that later allocations reuse.
+  // Copy first, then delete. Dropping the copy reintroduces garbled text and
+  // a line count that changes between identical runs.
+  const data = new Uint8Array(mat.data)
+  const width = mat.cols
+  const height = mat.rows
+  mat.delete()
+  return new ImageRaw({ data, width, height })
 }
